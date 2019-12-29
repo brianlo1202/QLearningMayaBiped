@@ -1,6 +1,6 @@
 //Maya ASCII 2018ff09 scene
 //Name: Model.0001.ma
-//Last modified: Sun, Dec 29, 2019 01:04:15 PM
+//Last modified: Sun, Dec 29, 2019 01:42:02 PM
 //Codeset: UTF-8
 requires maya "2018ff09";
 requires "mtoa" "3.1.2.1";
@@ -19,13 +19,13 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "6C8C079B-AE47-7E6C-7CFB-BC8F9B26E7F9";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 4.0811776277125746 3.7813273126662015 -1.1836007644022795 ;
-	setAttr ".r" -type "double3" -23.138352729610475 101.39999999995473 2.5444437451708134e-14 ;
+	setAttr ".t" -type "double3" 3.7903663220679955 2.535761589132095 -4.8175946219787171 ;
+	setAttr ".r" -type "double3" -18.938352729581425 136.59999999990382 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "423D463A-F944-6EA9-6984-368DED9496E6";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 4.6909864501841758;
+	setAttr ".coi" 5.8420316846581954;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -84,21 +84,18 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".ai_translator" -type "string" "orthographic";
 createNode joint -n "joint5";
 	rename -uid "421DDB5A-F348-E7BD-81FA-80B944EDF964";
-	setAttr ".t" -type "double3" 0 2.0000000000000004 0 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "none";
 	setAttr ".radi" 0.5;
 createNode joint -n "joint1" -p "joint5";
 	rename -uid "88B9052F-404F-EF42-4A0A-BDA143933AF2";
-	setAttr ".t" -type "double3" -3.9026412447306788e-36 0.00067300365155098529 1.0000000000000002 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "none";
 	setAttr ".radi" 0.50149845002585403;
 createNode joint -n "joint2" -p "joint1";
 	rename -uid "4A925D53-004F-8035-AA4E-C3B8DB6DF813";
-	setAttr ".t" -type "double3" 0.063627370995645471 -1.0289175447350833 0.010393106512475381 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "none";
@@ -110,16 +107,98 @@ createNode joint -n "joint3" -p "|joint5|joint1|joint2";
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "none";
 	setAttr ".radi" 0.5;
+createNode parentConstraint -n "joint2_parentConstraint1" -p "|joint5|joint1|joint2";
+	rename -uid "24926325-4E4D-D78E-929D-2B82A375C7BE";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "joint2_joint3W0" -dv 1 -min 0 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr ".tg[0].tot" -type "double3" -1.3582701297032429e-08 7.9845515095489095e-10 
+		-3.6327235553024195e-08 ;
+	setAttr ".tg[0].tor" -type "double3" -0.64911675712027872 -0.60821845902573257 93.726246357741402 ;
+	setAttr ".lr" -type "double3" 0 0 -6.3611093621865014e-15 ;
+	setAttr ".rst" -type "double3" 0.063627370995645471 -1.0289175447350833 0.010393106512475381 ;
+	setAttr ".rsrr" -type "double3" 0 0 -6.3611093621865014e-15 ;
+	setAttr -k on ".w0";
+createNode transform -n "sensor_rotation_leftKnee" -p "joint1";
+	rename -uid "6DF6132D-9048-CB84-7A84-2C8C20C713E5";
+	setAttr ".t" -type "double3" 3.9026412447306788e-36 -2.0006730036515514 -1.0000000000000002 ;
+	setAttr ".rp" -type "double3" 0.063627369701862391 0.97175544500350963 1.0103931427001953 ;
+	setAttr ".sp" -type "double3" 0.063627369701862335 0.97175544500350963 1.0103931427001953 ;
+createNode nurbsCurve -n "sensor_rotation_leftKneeShape" -p "sensor_rotation_leftKnee";
+	rename -uid "23197A83-4A48-AA56-9E29-EBABC246785A";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		0.67942298037141513 0.99999999999999911 0.87674338856034628
+		0.55616636893176208 0.99999999999999911 0.82568882844989111
+		0.43290975749210914 0.99999999999999911 0.87674338856034617
+		0.38185519738165413 0.99999999999999911 0.99999999999999911
+		0.43290975749210914 0.99999999999999911 1.1232566114396521
+		0.55616636893176208 0.99999999999999911 1.1743111715501071
+		0.67942298037141491 0.99999999999999911 1.1232566114396521
+		0.73047754048186997 0.99999999999999911 0.99999999999999922
+		0.67942298037141513 0.99999999999999911 0.87674338856034628
+		0.55616636893176208 0.99999999999999911 0.82568882844989111
+		0.43290975749210914 0.99999999999999911 0.87674338856034617
+		;
+createNode orientConstraint -n "sensor_rotation_leftKnee_orientConstraint1" -p "sensor_rotation_leftKnee";
+	rename -uid "2C182FA4-2345-F1A8-BFFC-66A5283180D0";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "joint2W0" -dv 1 -min 0 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr -k on ".w0";
+createNode parentConstraint -n "joint1_parentConstraint1" -p "joint1";
+	rename -uid "67191B5D-9C48-916B-46E7-ACA7718FDF41";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "joint1_joint2W0" -dv 1 -min 0 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr ".tg[0].tot" -type "double3" 5.1895474140195574e-08 -3.2142174755112052e-09 
+		-4.9275739044674083e-10 ;
+	setAttr ".tg[0].tor" -type "double3" 0.54300530848136197 0.57762250241448276 86.461308815805637 ;
+	setAttr ".lr" -type "double3" 9.9392333795734899e-17 3.1318259200362295e-17 6.8761672062199156e-19 ;
+	setAttr ".rst" -type "double3" 2.1289357293918305e-17 0.00067300365155098518 1.0000000000000002 ;
+	setAttr ".rsrr" -type "double3" 9.9392333795734899e-17 3.1318259200362295e-17 6.8761672062199156e-19 ;
+	setAttr -k on ".w0";
 createNode joint -n "joint4" -p "joint5";
 	rename -uid "F3A7BC28-814C-866E-E4F5-988CBF76D098";
-	setAttr ".t" -type "double3" 0 0.00067300365155098507 -1 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "none";
 	setAttr ".radi" 0.50000001171380681;
 createNode joint -n "joint2" -p "joint4";
 	rename -uid "ABBACCA1-B942-D656-0616-A18CEF433E45";
-	setAttr ".t" -type "double3" 0.063627370995645471 -1.0289175447350831 0.010393106512475492 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "none";
@@ -131,6 +210,72 @@ createNode joint -n "joint3" -p "|joint5|joint4|joint2";
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "none";
 	setAttr ".radi" 0.5;
+createNode parentConstraint -n "joint2_parentConstraint2" -p "|joint5|joint4|joint2";
+	rename -uid "B30667F7-6C4D-8E5D-55DF-8681C2BC5BE7";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "joint2_joint4W0" -dv 1 -min 0 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr ".tg[0].tot" -type "double3" -1.4215416732632491e-08 1.232323063038443e-10 
+		2.32702258573525e-08 ;
+	setAttr ".tg[0].tor" -type "double3" -0.64911675712027872 -0.60821845902573257 93.726246357741402 ;
+	setAttr ".lr" -type "double3" 0 0 -6.3611093621865014e-15 ;
+	setAttr ".rst" -type "double3" 0.063627370995645471 -1.0289175447350831 0.010393106512475492 ;
+	setAttr ".rsrr" -type "double3" 0 0 -6.3611093621865014e-15 ;
+	setAttr -k on ".w0";
+createNode parentConstraint -n "joint4_parentConstraint1" -p "joint4";
+	rename -uid "F3F68176-0E47-88F7-2430-1CA399EEF8D9";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "joint4_joint2W0" -dv 1 -min 0 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr ".tg[0].tot" -type "double3" 5.1895474140195574e-08 -3.2142175171445686e-09 
+		-4.9275750146904329e-10 ;
+	setAttr ".tg[0].tor" -type "double3" 0.54300530848136197 0.57762250241448276 86.461308815805637 ;
+	setAttr ".lr" -type "double3" 9.9392333795734899e-17 3.1318259200362295e-17 6.8761672062199156e-19 ;
+	setAttr ".rst" -type "double3" -1.9143271059304645e-17 0.00067300365155098518 -1 ;
+	setAttr ".rsrr" -type "double3" 9.9392333795734899e-17 3.1318259200362295e-17 6.8761672062199156e-19 ;
+	setAttr -k on ".w0";
+createNode parentConstraint -n "joint5_parentConstraint1" -p "joint5";
+	rename -uid "38357557-3047-0643-2ABC-6D9713AB80A1";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "joint5_joint1W0" -dv 1 -min 0 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr ".tg[0].tot" -type "double3" 2.1684043449710089e-19 4.4408920985006262e-16 
+		-2.1684043449710089e-19 ;
+	setAttr ".tg[0].tor" -type "double3" -89.961291359979498 89.961436751929554 -89.999927235621612 ;
+	setAttr ".lr" -type "double3" 2.0150988114373159e-12 6.7813603622692733e-16 -4.4163585817321552e-18 ;
+	setAttr ".rst" -type "double3" -8.2056343255819196e-20 2.0000000000000004 -8.2619297281191664e-20 ;
+	setAttr ".rsrr" -type "double3" 2.0150988114373159e-12 6.7813603622692733e-16 -4.4163585817321552e-18 ;
+	setAttr -k on ".w0";
 createNode transform -n "bulletSolver1";
 	rename -uid "CD78A63E-F84D-DE5E-028E-A9B13A2C69EC";
 createNode bulletSolverShape -n "bulletSolverShape1" -p "bulletSolver1";
@@ -446,12 +591,123 @@ select -ne :hardwareRenderGlobals;
 	setAttr ".btrs" 512;
 select -ne :ikSystem;
 	setAttr -s 4 ".sol";
+connectAttr "joint5_parentConstraint1.ctx" "joint5.tx";
+connectAttr "joint5_parentConstraint1.cty" "joint5.ty";
+connectAttr "joint5_parentConstraint1.ctz" "joint5.tz";
+connectAttr "joint5_parentConstraint1.crx" "joint5.rx";
+connectAttr "joint5_parentConstraint1.cry" "joint5.ry";
+connectAttr "joint5_parentConstraint1.crz" "joint5.rz";
 connectAttr "joint5.s" "joint1.is";
+connectAttr "joint1_parentConstraint1.ctx" "joint1.tx";
+connectAttr "joint1_parentConstraint1.cty" "joint1.ty";
+connectAttr "joint1_parentConstraint1.ctz" "joint1.tz";
+connectAttr "joint1_parentConstraint1.crx" "joint1.rx";
+connectAttr "joint1_parentConstraint1.cry" "joint1.ry";
+connectAttr "joint1_parentConstraint1.crz" "joint1.rz";
 connectAttr "joint1.s" "|joint5|joint1|joint2.is";
+connectAttr "joint2_parentConstraint1.crx" "|joint5|joint1|joint2.rx";
+connectAttr "joint2_parentConstraint1.cry" "|joint5|joint1|joint2.ry";
+connectAttr "joint2_parentConstraint1.crz" "|joint5|joint1|joint2.rz";
+connectAttr "joint2_parentConstraint1.ctx" "|joint5|joint1|joint2.tx";
+connectAttr "joint2_parentConstraint1.cty" "|joint5|joint1|joint2.ty";
+connectAttr "joint2_parentConstraint1.ctz" "|joint5|joint1|joint2.tz";
 connectAttr "|joint5|joint1|joint2.s" "|joint5|joint1|joint2|joint3.is";
+connectAttr "|joint5|joint1|joint2.ro" "joint2_parentConstraint1.cro";
+connectAttr "|joint5|joint1|joint2.pim" "joint2_parentConstraint1.cpim";
+connectAttr "|joint5|joint1|joint2.rp" "joint2_parentConstraint1.crp";
+connectAttr "|joint5|joint1|joint2.rpt" "joint2_parentConstraint1.crt";
+connectAttr "|joint5|joint1|joint2.jo" "joint2_parentConstraint1.cjo";
+connectAttr "joint2_joint3.t" "joint2_parentConstraint1.tg[0].tt";
+connectAttr "joint2_joint3.rp" "joint2_parentConstraint1.tg[0].trp";
+connectAttr "joint2_joint3.rpt" "joint2_parentConstraint1.tg[0].trt";
+connectAttr "joint2_joint3.r" "joint2_parentConstraint1.tg[0].tr";
+connectAttr "joint2_joint3.ro" "joint2_parentConstraint1.tg[0].tro";
+connectAttr "joint2_joint3.s" "joint2_parentConstraint1.tg[0].ts";
+connectAttr "joint2_joint3.pm" "joint2_parentConstraint1.tg[0].tpm";
+connectAttr "joint2_parentConstraint1.w0" "joint2_parentConstraint1.tg[0].tw";
+connectAttr "sensor_rotation_leftKnee_orientConstraint1.crz" "sensor_rotation_leftKnee.rz"
+		;
+connectAttr "sensor_rotation_leftKnee.ro" "sensor_rotation_leftKnee_orientConstraint1.cro"
+		;
+connectAttr "sensor_rotation_leftKnee.pim" "sensor_rotation_leftKnee_orientConstraint1.cpim"
+		;
+connectAttr "|joint5|joint1|joint2.r" "sensor_rotation_leftKnee_orientConstraint1.tg[0].tr"
+		;
+connectAttr "|joint5|joint1|joint2.ro" "sensor_rotation_leftKnee_orientConstraint1.tg[0].tro"
+		;
+connectAttr "|joint5|joint1|joint2.pm" "sensor_rotation_leftKnee_orientConstraint1.tg[0].tpm"
+		;
+connectAttr "|joint5|joint1|joint2.jo" "sensor_rotation_leftKnee_orientConstraint1.tg[0].tjo"
+		;
+connectAttr "sensor_rotation_leftKnee_orientConstraint1.w0" "sensor_rotation_leftKnee_orientConstraint1.tg[0].tw"
+		;
+connectAttr "joint1.ro" "joint1_parentConstraint1.cro";
+connectAttr "joint1.pim" "joint1_parentConstraint1.cpim";
+connectAttr "joint1.rp" "joint1_parentConstraint1.crp";
+connectAttr "joint1.rpt" "joint1_parentConstraint1.crt";
+connectAttr "joint1.jo" "joint1_parentConstraint1.cjo";
+connectAttr "joint1_joint2.t" "joint1_parentConstraint1.tg[0].tt";
+connectAttr "joint1_joint2.rp" "joint1_parentConstraint1.tg[0].trp";
+connectAttr "joint1_joint2.rpt" "joint1_parentConstraint1.tg[0].trt";
+connectAttr "joint1_joint2.r" "joint1_parentConstraint1.tg[0].tr";
+connectAttr "joint1_joint2.ro" "joint1_parentConstraint1.tg[0].tro";
+connectAttr "joint1_joint2.s" "joint1_parentConstraint1.tg[0].ts";
+connectAttr "joint1_joint2.pm" "joint1_parentConstraint1.tg[0].tpm";
+connectAttr "joint1_parentConstraint1.w0" "joint1_parentConstraint1.tg[0].tw";
 connectAttr "joint5.s" "joint4.is";
+connectAttr "joint4_parentConstraint1.ctx" "joint4.tx";
+connectAttr "joint4_parentConstraint1.cty" "joint4.ty";
+connectAttr "joint4_parentConstraint1.ctz" "joint4.tz";
+connectAttr "joint4_parentConstraint1.crx" "joint4.rx";
+connectAttr "joint4_parentConstraint1.cry" "joint4.ry";
+connectAttr "joint4_parentConstraint1.crz" "joint4.rz";
 connectAttr "joint4.s" "|joint5|joint4|joint2.is";
+connectAttr "joint2_parentConstraint2.ctx" "|joint5|joint4|joint2.tx";
+connectAttr "joint2_parentConstraint2.cty" "|joint5|joint4|joint2.ty";
+connectAttr "joint2_parentConstraint2.ctz" "|joint5|joint4|joint2.tz";
+connectAttr "joint2_parentConstraint2.crx" "|joint5|joint4|joint2.rx";
+connectAttr "joint2_parentConstraint2.cry" "|joint5|joint4|joint2.ry";
+connectAttr "joint2_parentConstraint2.crz" "|joint5|joint4|joint2.rz";
 connectAttr "|joint5|joint4|joint2.s" "|joint5|joint4|joint2|joint3.is";
+connectAttr "|joint5|joint4|joint2.ro" "joint2_parentConstraint2.cro";
+connectAttr "|joint5|joint4|joint2.pim" "joint2_parentConstraint2.cpim";
+connectAttr "|joint5|joint4|joint2.rp" "joint2_parentConstraint2.crp";
+connectAttr "|joint5|joint4|joint2.rpt" "joint2_parentConstraint2.crt";
+connectAttr "|joint5|joint4|joint2.jo" "joint2_parentConstraint2.cjo";
+connectAttr "joint2_joint4.t" "joint2_parentConstraint2.tg[0].tt";
+connectAttr "joint2_joint4.rp" "joint2_parentConstraint2.tg[0].trp";
+connectAttr "joint2_joint4.rpt" "joint2_parentConstraint2.tg[0].trt";
+connectAttr "joint2_joint4.r" "joint2_parentConstraint2.tg[0].tr";
+connectAttr "joint2_joint4.ro" "joint2_parentConstraint2.tg[0].tro";
+connectAttr "joint2_joint4.s" "joint2_parentConstraint2.tg[0].ts";
+connectAttr "joint2_joint4.pm" "joint2_parentConstraint2.tg[0].tpm";
+connectAttr "joint2_parentConstraint2.w0" "joint2_parentConstraint2.tg[0].tw";
+connectAttr "joint4.ro" "joint4_parentConstraint1.cro";
+connectAttr "joint4.pim" "joint4_parentConstraint1.cpim";
+connectAttr "joint4.rp" "joint4_parentConstraint1.crp";
+connectAttr "joint4.rpt" "joint4_parentConstraint1.crt";
+connectAttr "joint4.jo" "joint4_parentConstraint1.cjo";
+connectAttr "joint4_joint2.t" "joint4_parentConstraint1.tg[0].tt";
+connectAttr "joint4_joint2.rp" "joint4_parentConstraint1.tg[0].trp";
+connectAttr "joint4_joint2.rpt" "joint4_parentConstraint1.tg[0].trt";
+connectAttr "joint4_joint2.r" "joint4_parentConstraint1.tg[0].tr";
+connectAttr "joint4_joint2.ro" "joint4_parentConstraint1.tg[0].tro";
+connectAttr "joint4_joint2.s" "joint4_parentConstraint1.tg[0].ts";
+connectAttr "joint4_joint2.pm" "joint4_parentConstraint1.tg[0].tpm";
+connectAttr "joint4_parentConstraint1.w0" "joint4_parentConstraint1.tg[0].tw";
+connectAttr "joint5.ro" "joint5_parentConstraint1.cro";
+connectAttr "joint5.pim" "joint5_parentConstraint1.cpim";
+connectAttr "joint5.rp" "joint5_parentConstraint1.crp";
+connectAttr "joint5.rpt" "joint5_parentConstraint1.crt";
+connectAttr "joint5.jo" "joint5_parentConstraint1.cjo";
+connectAttr "joint5_joint1.t" "joint5_parentConstraint1.tg[0].tt";
+connectAttr "joint5_joint1.rp" "joint5_parentConstraint1.tg[0].trp";
+connectAttr "joint5_joint1.rpt" "joint5_parentConstraint1.tg[0].trt";
+connectAttr "joint5_joint1.r" "joint5_parentConstraint1.tg[0].tr";
+connectAttr "joint5_joint1.ro" "joint5_parentConstraint1.tg[0].tro";
+connectAttr "joint5_joint1.s" "joint5_parentConstraint1.tg[0].ts";
+connectAttr "joint5_joint1.pm" "joint5_parentConstraint1.tg[0].tpm";
+connectAttr "joint5_parentConstraint1.w0" "joint5_parentConstraint1.tg[0].tw";
 connectAttr ":time1.o" "bulletSolverShape1.ct";
 connectAttr "bulletRigidBody_groundShape.rbdata" "bulletSolverShape1.rb" -na;
 connectAttr "bulletRigidBodyShape1.rbdata" "bulletSolverShape1.rb" -na;
