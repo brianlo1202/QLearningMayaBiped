@@ -1,6 +1,6 @@
 //Maya ASCII 2018ff09 scene
 //Name: Model.0001.ma
-//Last modified: Sun, Dec 29, 2019 02:19:21 PM
+//Last modified: Sun, Dec 29, 2019 02:24:16 PM
 //Codeset: UTF-8
 requires maya "2018ff09";
 requires "mtoa" "3.1.2.1";
@@ -539,7 +539,7 @@ createNode bulletRigidBodyConstraintShape -n "motor_leftThighShape" -p "motor_le
 	setAttr ".contyp" 4;
 	setAttr ".angdamp" 0.5;
 	setAttr ".angmotor" yes;
-	setAttr ".angmotorvel" -type "float3" 0 0 320 ;
+	setAttr ".angmotorvel" -type "float3" 0 0 0 ;
 	setAttr ".angmotormaxf" -type "float3" 0 0 320 ;
 	setAttr ".linconx" 1;
 	setAttr ".lincony" 1;
@@ -637,7 +637,7 @@ createNode bulletRigidBodyConstraintShape -n "motor_rightKneeShape" -p "motor_ri
 	setAttr ".contyp" 4;
 	setAttr ".angdamp" 0.5;
 	setAttr ".angmotor" yes;
-	setAttr ".angmotorvel" -type "float3" 0 0 1 ;
+	setAttr ".angmotorvel" -type "float3" 0 0 0 ;
 	setAttr ".angmotormaxf" -type "float3" 0 0 320 ;
 	setAttr ".linconx" 1;
 	setAttr ".lincony" 1;
