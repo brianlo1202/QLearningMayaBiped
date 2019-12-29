@@ -27,7 +27,7 @@ class State:
        
         
     def __str__(self):
-        return "state: {} {} {} {} {} {}".format(self.bodyTrans, self.bodyRot, self.leftThighRot, self.rightThighRot, self.leftKneeRot, self.rightKneeRot, self.leftThighSpeed, self.rightThighSpeed, self.leftKneeSpeed, self.rightKneeSpeed)
+        return "state: {} {} | {} {} {} {} {} {} {} {}".format(self.bodyTrans, self.bodyRot, self.leftThighRot, self.rightThighRot, self.leftKneeRot, self.rightKneeRot, self.leftThighSpeed, self.rightThighSpeed, self.leftKneeSpeed, self.rightKneeSpeed)
         
     def __hash__(self):
         return hash((self.bodyRot, self.leftThighRot, self.rightThighRot, self.leftKneeRot, self.rightKneeRot, self.leftThighSpeed, self.rightThighSpeed, self.leftKneeSpeed, self.rightKneeSpeed))
