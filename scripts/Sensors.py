@@ -42,7 +42,6 @@ print "sensor reading: " + str(s.read())
   
 #Tests Sensor_Translate
 print
-print "Testing ..."
 randomSensorName = cmds.ls( 'sensor_translate_body' )[0]
 print("testing " + randomSensorName)
 s = Sensor_Translate(randomSensorName)
