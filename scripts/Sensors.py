@@ -15,6 +15,14 @@ class Sensor_Rotation(Sensor):
         reading = cmds.getAttr(self.name + '.rotateZ')
     
         return -1*reading
+        
+class Sensor_Translate(Sensor):
+    def read(self):
+        reading = cmds.getAttr(self.name + '.translateX')
+        return reading
+    def readY(self):
+        reading = cmds.getAttr(self.name + '.translateY')
+        return reading
 
 #Test Sensor
 print
@@ -32,3 +40,12 @@ s = Sensor_Rotation(randomSensorName)
 print "sensor to string: " + str(s)
 print "sensor reading: " + str(s.read())  
   
+#Tests Sensor_Translate
+print
+print "Testing ..."
+randomSensorName = cmds.ls( 'sensor_translate_body' )[0]
+print("testing " + randomSensorName)
+s = Sensor_Translate(randomSensorName)
+print "sensor to string: " + str(s)
+print "sensor reading: " + str(s.read())
+print "sensor reading Y: " + str(s.readY())
