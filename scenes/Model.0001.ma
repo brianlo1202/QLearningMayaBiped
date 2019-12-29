@@ -1,6 +1,6 @@
 //Maya ASCII 2018ff09 scene
 //Name: Model.0001.ma
-//Last modified: Sun, Dec 29, 2019 01:58:21 PM
+//Last modified: Sun, Dec 29, 2019 02:05:05 PM
 //Codeset: UTF-8
 requires maya "2018ff09";
 requires "mtoa" "3.1.2.1";
@@ -19,13 +19,13 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "6C8C079B-AE47-7E6C-7CFB-BC8F9B26E7F9";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -0.15720995805418059 1.3759774707972698 3.2807796079754943 ;
-	setAttr ".r" -type "double3" 3.8616472704440397 1.3999999998698573 2.4855503070592746e-16 ;
+	setAttr ".t" -type "double3" -0.03761521095062581 1.6073786894075059 5.7238764816169976 ;
+	setAttr ".r" -type "double3" 3.2616472704393003 -10.600000000139662 5.0558937513934922e-17 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "423D463A-F944-6EA9-6984-368DED9496E6";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 3.712175647824596;
+	setAttr ".coi" 5.7292257353382192;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -125,7 +125,7 @@ createNode parentConstraint -n "joint2_parentConstraint1" -p "|joint5|joint1|joi
 	setAttr ".tg[0].tot" -type "double3" -1.3582701297032429e-08 7.9845515095489095e-10 
 		-3.6327235553024195e-08 ;
 	setAttr ".tg[0].tor" -type "double3" -0.64911675712027872 -0.60821845902573257 93.726246357741402 ;
-	setAttr ".lr" -type "double3" 0.022766469214239853 0.012989385126062238 -121.42657773075018 ;
+	setAttr ".lr" -type "double3" -0.021386156695202503 -0.016227072583897984 -121.40449139282985 ;
 	setAttr ".rst" -type "double3" 0.063627370995645471 -1.0289175447350833 0.010393106512475381 ;
 	setAttr ".rsrr" -type "double3" 0 0 -6.3611093621865014e-15 ;
 	setAttr -k on ".w0";
@@ -168,7 +168,7 @@ createNode orientConstraint -n "sensor_rotation_leftKnee_orientConstraint1" -p "
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".lr" -type "double3" 0.022766469214239853 0.01298938512606224 -121.42657773075018 ;
+	setAttr ".lr" -type "double3" -0.0213861566952025 -0.016227072583897984 -121.40449139282985 ;
 	setAttr -k on ".w0";
 createNode parentConstraint -n "joint1_parentConstraint1" -p "joint1";
 	rename -uid "67191B5D-9C48-916B-46E7-ACA7718FDF41";
@@ -188,7 +188,7 @@ createNode parentConstraint -n "joint1_parentConstraint1" -p "joint1";
 	setAttr ".tg[0].tot" -type "double3" 5.1895474140195574e-08 -3.2142174755112052e-09 
 		-4.9275739044674083e-10 ;
 	setAttr ".tg[0].tor" -type "double3" 0.54300530848136197 0.57762250241448276 86.461308815805637 ;
-	setAttr ".lr" -type "double3" -0.0028995493666528573 -0.0048751984995037958 11.872106472927671 ;
+	setAttr ".lr" -type "double3" -0.0012827313243558242 -0.049160737184803169 14.085921650769761 ;
 	setAttr ".rst" -type "double3" 2.1289357293918305e-17 0.00067300365155098518 1.0000000000000002 ;
 	setAttr ".rsrr" -type "double3" 9.9392333795734899e-17 3.1318259200362295e-17 6.8761672062199156e-19 ;
 	setAttr -k on ".w0";
@@ -229,7 +229,7 @@ createNode parentConstraint -n "joint2_parentConstraint2" -p "|joint5|joint4|joi
 	setAttr ".tg[0].tot" -type "double3" -1.4215416732632491e-08 1.232323063038443e-10 
 		2.32702258573525e-08 ;
 	setAttr ".tg[0].tor" -type "double3" -0.64911675712027872 -0.60821845902573257 93.726246357741402 ;
-	setAttr ".lr" -type "double3" 0.035163056585000525 0.017051422240928208 -121.92572665709592 ;
+	setAttr ".lr" -type "double3" 0.0070346273755535248 -0.0056930780575535061 -122.62970018013304 ;
 	setAttr ".rst" -type "double3" 0.063627370995645471 -1.0289175447350831 0.010393106512475492 ;
 	setAttr ".rsrr" -type "double3" 0 0 -6.3611093621865014e-15 ;
 	setAttr -k on ".w0";
@@ -251,7 +251,7 @@ createNode parentConstraint -n "joint4_parentConstraint1" -p "joint4";
 	setAttr ".tg[0].tot" -type "double3" 5.1895474140195574e-08 -3.2142175171445686e-09 
 		-4.9275750146904329e-10 ;
 	setAttr ".tg[0].tor" -type "double3" 0.54300530848136197 0.57762250241448276 86.461308815805637 ;
-	setAttr ".lr" -type "double3" 0.015885198796610243 -0.0057468146100027083 11.672088670880461 ;
+	setAttr ".lr" -type "double3" 0.0062483866083161265 -0.059332153359020159 15.188616106873299 ;
 	setAttr ".rst" -type "double3" -1.9143271059304645e-17 0.00067300365155098518 -1 ;
 	setAttr ".rsrr" -type "double3" 9.9392333795734899e-17 3.1318259200362295e-17 6.8761672062199156e-19 ;
 	setAttr -k on ".w0";
@@ -294,7 +294,7 @@ createNode orientConstraint -n "sensor_rotation_rightKnee_orientConstraint1" -p 
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".lr" -type "double3" 0.035163056585000525 0.017051422240928205 -121.92572665709592 ;
+	setAttr ".lr" -type "double3" 0.0070346273755535257 -0.0056930780575535061 -122.62970018013301 ;
 	setAttr -k on ".w0";
 createNode parentConstraint -n "joint5_parentConstraint1" -p "joint5";
 	rename -uid "38357557-3047-0643-2ABC-6D9713AB80A1";
@@ -314,7 +314,7 @@ createNode parentConstraint -n "joint5_parentConstraint1" -p "joint5";
 	setAttr ".tg[0].tot" -type "double3" 2.1684043449710089e-19 4.4408920985006262e-16 
 		-2.1684043449710089e-19 ;
 	setAttr ".tg[0].tor" -type "double3" -89.961291359979498 89.961436751929554 -89.999927235621612 ;
-	setAttr ".lr" -type "double3" -0.27215174329403241 -0.0001576220130648749 89.960317024391259 ;
+	setAttr ".lr" -type "double3" -0.26921864908143422 0.00057106150370677647 89.958771434656057 ;
 	setAttr ".rst" -type "double3" -8.2056343255819196e-20 2.0000000000000004 -8.2619297281191664e-20 ;
 	setAttr ".rsrr" -type "double3" 2.0150988114373159e-12 6.7813603622692733e-16 -4.4163585817321552e-18 ;
 	setAttr -k on ".w0";
@@ -357,7 +357,7 @@ createNode orientConstraint -n "sensor_rotation_rightThigh_orientConstraint1" -p
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".lr" -type "double3" 0.015885198796610239 -0.0057468146100027075 11.672088670880457 ;
+	setAttr ".lr" -type "double3" 0.0062483866083161213 -0.05933215335902018 15.188616106873299 ;
 	setAttr -k on ".w0";
 createNode transform -n "sensor_rotation_leftThigh" -p "joint5";
 	rename -uid "515AC7B4-1041-4E0E-E27C-EE94CAF25A4E";
@@ -398,7 +398,7 @@ createNode orientConstraint -n "sensor_rotation_leftThigh_orientConstraint1" -p 
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".lr" -type "double3" -0.0028995493666528578 -0.0048751984995037976 11.872106472927673 ;
+	setAttr ".lr" -type "double3" -0.0012827313243558244 -0.049160737184803169 14.085921650769761 ;
 	setAttr -k on ".w0";
 createNode transform -n "bulletSolver1";
 	rename -uid "CD78A63E-F84D-DE5E-028E-A9B13A2C69EC";
@@ -409,6 +409,63 @@ createNode bulletSolverShape -n "bulletSolverShape1" -p "bulletSolver1";
 	setAttr ".cdvm[0]"  0 1 1;
 	setAttr -s 7 ".rb";
 	setAttr -s 5 ".rbc";
+createNode transform -n "sensor_rotation_body";
+	rename -uid "E5A506B1-5F4A-F44F-D078-978A0781F252";
+	setAttr ".rp" -type "double3" 0 2 0 ;
+	setAttr ".sp" -type "double3" -5.5511151231257827e-17 2 0 ;
+createNode nurbsCurve -n "sensor_rotation_bodyShape" -p "sensor_rotation_body";
+	rename -uid "365C884A-1C4A-BCF2-F421-D6A97CFC4584";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		0.6157956106695528 2.0282445549964896 -0.13364975413984892
+		0.49253899922989963 2.0282445549964896 -0.1847043142503042
+		0.36928238779024675 2.0282445549964896 -0.13364975413984914
+		0.31822782767979174 2.0282445549964896 -0.010393142700196201
+		0.36928238779024675 2.0282445549964896 0.11286346873945674
+		0.49253899922989963 2.0282445549964896 0.1639180288499118
+		0.61579561066955257 2.0282445549964896 0.11286346873945674
+		0.66685017078000763 2.0282445549964896 -0.010393142700196201
+		0.6157956106695528 2.0282445549964896 -0.13364975413984892
+		0.49253899922989963 2.0282445549964896 -0.1847043142503042
+		0.36928238779024675 2.0282445549964896 -0.13364975413984914
+		;
+createNode orientConstraint -n "sensor_rotation_body_orientConstraint1" -p "sensor_rotation_body";
+	rename -uid "CD63EBD1-1D4D-6E97-3B7D-C783DFEA9E48";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "joint5W0" -dv 1 -min 0 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr ".lr" -type "double3" -0.26921864908143422 0.00057106150370677669 89.958771434656072 ;
+	setAttr -k on ".w0";
+createNode pointConstraint -n "sensor_rotation_body_pointConstraint1" -p "sensor_rotation_body";
+	rename -uid "F0B81A85-644B-DFEC-45D0-DE9B777BF8C4";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "joint5W0" -dv 1 -min 0 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr ".o" -type "double3" 8.2056343255819196e-20 -4.4408920985006262e-16 8.2619297281191664e-20 ;
+	setAttr -k on ".w0";
 createNode transform -n "bulletRigidBody_ground";
 	rename -uid "87D3984E-1242-EE67-AB14-C7A96537C8FF";
 createNode bulletRigidBodyShape -n "bulletRigidBody_groundShape" -p "bulletRigidBody_ground";
@@ -686,8 +743,8 @@ createNode pairBlend -n "translateRotate11";
 	setAttr ".it1" -type "double3" 0.063627369701862335 0.97175544500350952 -0.98960691690444946 ;
 	setAttr ".ir1" -type "double3" -0.64911759322103413 0.6082175666973515 -93.726246357124467 ;
 select -ne :time1;
-	setAttr ".o" 101;
-	setAttr ".unw" 101;
+	setAttr ".o" 79;
+	setAttr ".unw" 79;
 select -ne :hardwareRenderingGlobals;
 	setAttr ".otfna" -type "stringArray" 22 "NURBS Curves" "NURBS Surfaces" "Polygons" "Subdiv Surface" "Particles" "Particle Instance" "Fluids" "Strokes" "Image Planes" "UI" "Lights" "Cameras" "Locators" "Joints" "IK Handles" "Deformers" "Motion Trails" "Components" "Hair Systems" "Follicles" "Misc. UI" "Ornaments"  ;
 	setAttr ".otfva" -type "Int32Array" 22 0 1 1 1 1 1
@@ -888,6 +945,36 @@ connectAttr "constraint_jointShape1.outcondata" "bulletSolverShape1.rbc" -na;
 connectAttr "constraint_jointShape4.outcondata" "bulletSolverShape1.rbc" -na;
 connectAttr "constraint_jointShape2.outcondata" "bulletSolverShape1.rbc" -na;
 connectAttr "constraint_jointShape6.outcondata" "bulletSolverShape1.rbc" -na;
+connectAttr "sensor_rotation_body_orientConstraint1.crz" "sensor_rotation_body.rz"
+		;
+connectAttr "sensor_rotation_body_pointConstraint1.ctx" "sensor_rotation_body.tx"
+		;
+connectAttr "sensor_rotation_body_pointConstraint1.cty" "sensor_rotation_body.ty"
+		;
+connectAttr "sensor_rotation_body_pointConstraint1.ctz" "sensor_rotation_body.tz"
+		;
+connectAttr "sensor_rotation_body.ro" "sensor_rotation_body_orientConstraint1.cro"
+		;
+connectAttr "sensor_rotation_body.pim" "sensor_rotation_body_orientConstraint1.cpim"
+		;
+connectAttr "joint5.r" "sensor_rotation_body_orientConstraint1.tg[0].tr";
+connectAttr "joint5.ro" "sensor_rotation_body_orientConstraint1.tg[0].tro";
+connectAttr "joint5.pm" "sensor_rotation_body_orientConstraint1.tg[0].tpm";
+connectAttr "joint5.jo" "sensor_rotation_body_orientConstraint1.tg[0].tjo";
+connectAttr "sensor_rotation_body_orientConstraint1.w0" "sensor_rotation_body_orientConstraint1.tg[0].tw"
+		;
+connectAttr "sensor_rotation_body.pim" "sensor_rotation_body_pointConstraint1.cpim"
+		;
+connectAttr "sensor_rotation_body.rp" "sensor_rotation_body_pointConstraint1.crp"
+		;
+connectAttr "sensor_rotation_body.rpt" "sensor_rotation_body_pointConstraint1.crt"
+		;
+connectAttr "joint5.t" "sensor_rotation_body_pointConstraint1.tg[0].tt";
+connectAttr "joint5.rp" "sensor_rotation_body_pointConstraint1.tg[0].trp";
+connectAttr "joint5.rpt" "sensor_rotation_body_pointConstraint1.tg[0].trt";
+connectAttr "joint5.pm" "sensor_rotation_body_pointConstraint1.tg[0].tpm";
+connectAttr "sensor_rotation_body_pointConstraint1.w0" "sensor_rotation_body_pointConstraint1.tg[0].tw"
+		;
 connectAttr "translateRotate6.otx" "bulletRigidBody_ground.tx";
 connectAttr "translateRotate6.oty" "bulletRigidBody_ground.ty";
 connectAttr "translateRotate6.otz" "bulletRigidBody_ground.tz";
