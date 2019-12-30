@@ -34,7 +34,7 @@ print "sensor reading: " + str(s.read())
    
 #Tests Sensor_Rotation
 print
-randomSensorName = cmds.ls( 'sensor_rotation_body' )[0]
+randomSensorName = cmds.ls( 'sensor_rotation*' )[0]
 print("testing " + randomSensorName)
 s = Sensor_Rotation(randomSensorName)
 print "sensor to string: " + str(s)

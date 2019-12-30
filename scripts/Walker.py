@@ -83,10 +83,3 @@ print "current state:"
 print crawler.getCurrentState()
 
 
-
-
-
-
-
-
-       
