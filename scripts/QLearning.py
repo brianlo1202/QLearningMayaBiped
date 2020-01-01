@@ -9,8 +9,8 @@ speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 5*60 #seconds
-maxIterations = 10
+programTimeLimit = 1*60 #seconds
+maxIterations = inf
 
 endAnimFrame = 384
 
