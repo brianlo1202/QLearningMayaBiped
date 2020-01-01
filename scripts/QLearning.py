@@ -9,8 +9,8 @@ speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 3*60*60 #seconds
-maxIterations = 10
+programTimeLimit = 60*60 #seconds
+maxIterations = inf
 
 endAnimFrame = 384
 
@@ -124,6 +124,8 @@ def main():
             #print "exploit"
             action = chooseBestAction(currentState, qr)
             
+        #print str(action)
+            
         crawler.takeAction(action)
         wait(speed)
         
@@ -175,7 +177,7 @@ def main():
             elif timePassed > 10800:
                 E = 0.33
             elif timePassed > 7200:
-                E = 0.33
+                E = 0.5
             elif timePassed > 3600:
                 E = 0.5
             elif timePassed > 0:
@@ -184,9 +186,10 @@ def main():
             print "E = {}".format(E)
             print
               
-            qr.save()
+            
         
-     
+    #save all data
+    qr.save()
     #set all motors to 0 speed
     everythingOff = Action(0,0,0,0)
     crawler.takeAction(everythingOff)
