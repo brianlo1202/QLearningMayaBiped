@@ -1,5 +1,5 @@
 #position of the body is ignored when comparing states; only angles of motors matter
-maxMotorSpeedMag = 512
+maxMotorSpeedMag = 1024
 class State:
     #10 params
     def __init__(self, bodyTrans, bodyRot, leftThighRot, rightThighRot, leftKneeRot, rightKneeRot, leftThighSpeed, rightThighSpeed, leftKneeSpeed, rightKneeSpeed):

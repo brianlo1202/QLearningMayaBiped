@@ -1,6 +1,6 @@
 //Maya ASCII 2018ff09 scene
 //Name: Model.ma
-//Last modified: Tue, Dec 31, 2019 07:38:05 PM
+//Last modified: Wed, Jan 01, 2020 11:21:39 AM
 //Codeset: UTF-8
 requires maya "2018ff09";
 requires "mtoa" "3.1.2.1";
@@ -19,13 +19,13 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "6C8C079B-AE47-7E6C-7CFB-BC8F9B26E7F9";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 4.7677101534461137 1.098244098230946 4.5676830517212483 ;
-	setAttr ".r" -type "double3" -0.33835272966371338 45.400000000004212 0 ;
+	setAttr ".t" -type "double3" 2.2612645947173462 1.6904500921909364 3.4046176947475129 ;
+	setAttr ".r" -type "double3" 3.2616472705159145 33.79999999996582 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "423D463A-F944-6EA9-6984-368DED9496E6";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 8.8998087433817865;
+	setAttr ".coi" 3.994150945217966;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -479,9 +479,10 @@ createNode bulletRigidBodyShape -n "bulletRigidBodyShape1" -p "joint5_joint1";
 	setAttr ".ms" 4;
 	setAttr ".com" -type "float3" 0.50000012 0 0 ;
 	setAttr ".angdamp" 1;
+	setAttr ".colshtyp" 3;
 	setAttr ".bdytyp" 2;
 	setAttr ".len" 0.70000016689300537;
-	setAttr ".rad" 0.10000002384185791;
+	setAttr ".rad" 0.40000000596046448;
 	setAttr ".ext" -type "float3" 0.60000002 0.60000002 0.60000002 ;
 	setAttr ".axis" 0;
 	setAttr ".itrs" -type "float3" 0 2 0 ;
@@ -495,9 +496,10 @@ createNode bulletRigidBodyShape -n "bulletRigidBodyShape2" -p "joint5_joint4";
 	setAttr ".ms" 4;
 	setAttr ".com" -type "float3" 0.50000012 0 0 ;
 	setAttr ".angdamp" 1;
+	setAttr ".colshtyp" 3;
 	setAttr ".bdytyp" 2;
 	setAttr ".len" 0.70000016689300537;
-	setAttr ".rad" 0.10000002384185791;
+	setAttr ".rad" 0.40000000596046448;
 	setAttr ".ext" -type "float3" 0.60000002 0.60000002 0.60000002 ;
 	setAttr ".axis" 0;
 	setAttr ".itrs" -type "float3" 0 2 0 ;
@@ -550,7 +552,6 @@ createNode bulletRigidBodyConstraintShape -n "motor1_leftThighShape" -p "motor1_
 	setAttr ".angconx" 1;
 	setAttr ".angcony" 1;
 	setAttr ".angconz" 2;
-	setAttr ".acmin" -type "float3" 0 0 -90 ;
 	setAttr ".acmax" -type "float3" 0 0 90 ;
 createNode transform -n "joint4_joint2" -p "Ragdoll1";
 	rename -uid "333AF356-F84D-1FE1-91D4-CF8AB0810E99";
@@ -583,7 +584,6 @@ createNode bulletRigidBodyConstraintShape -n "motor2_rightThighShape" -p "motor2
 	setAttr ".angconx" 1;
 	setAttr ".angcony" 1;
 	setAttr ".angconz" 2;
-	setAttr ".acmin" -type "float3" 0 0 -90 ;
 	setAttr ".acmax" -type "float3" 0 0 90 ;
 createNode transform -n "joint2_joint3" -p "Ragdoll1";
 	rename -uid "476352C7-B641-61E3-67AA-F6A420634929";
@@ -1191,22 +1191,22 @@ createNode parentConstraint -n "sensor_death_knee4_parentConstraint1" -p "sensor
 	setAttr ".rsrr" -type "double3" 180 0 -45.000000000000014 ;
 	setAttr -k on ".w0";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "1AFEBB19-3348-423A-6F4A-88BA04F373AA";
+	rename -uid "115DD3FD-1544-D43E-B815-BAB6CE83A7CC";
 	setAttr -s 2 ".lnk";
 	setAttr -s 2 ".slnk";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "BFB028D6-8C41-1846-FB70-42BCD3AFFA51";
+	rename -uid "2FA8E67D-6A46-44DA-D659-A2BA57B1987E";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "8E1C98AA-A14C-45D1-D43E-828BB60D1EC3";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "5A6F3C0B-3B4F-405F-837C-CE84C85536C3";
+	rename -uid "C1447011-E346-04EB-B93A-D4AA80ECDD91";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "5940178D-D544-4FD3-1A9C-F69CF529A356";
 	setAttr ".g" yes;
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "A6DA6D6C-364D-7FBE-94E3-8596485B784E";
+	rename -uid "449AA001-AC43-709C-9873-F5BBDD9A6EEC";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "E6446782-A843-C01E-6BE5-FCA3CFABB584";
+	rename -uid "017392A6-8847-3FD4-58AF-A986204E1A92";
 createNode script -n "uiConfigurationScriptNode";
 	rename -uid "909DEDCE-9B4E-A9D4-7909-E8A45A4E801F";
 	setAttr ".b" -type "string" (

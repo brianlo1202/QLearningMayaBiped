@@ -95,7 +95,6 @@ def test():
     print qRecorder.maxQAtState(State(1,2,3,4,5,6,7,8,9,0))
 
 print
-test()
 qr = QValueRecorder("/Users/brianlo/Documents/maya/projects/QLearningBipedWalker/scripts")
 qr.load()
 print [str(key[0]) + " " + str(key[1]) for key in qr.recorder.keys()]

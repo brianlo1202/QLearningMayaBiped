@@ -2,15 +2,15 @@
 import random
 import time
 
-E = 0.5 #exploration rate
+E = 1.0 #exploration rate
 a = 0.5 #learning rate
 y = 1.0
 speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 1*60 #seconds
-maxIterations = inf
+programTimeLimit = 3*60*60 #seconds
+maxIterations = 10
 
 endAnimFrame = 384
 
@@ -36,8 +36,16 @@ def timeIsUp():
     return (time.time() - startTime) > programTimeLimit
 def timeRemaining():
     return programTimeLimit - (time.time() - startTime)
+    
+def timeElapsed():
+    return (time.time() - startTime)
+    
 def currentTimeInSec():
     return cmds.currentTime( query=True ) / 24.0 
+    
+def currentFrame():
+    return cmds.currentTime( query=True )
+    
 def atEndAnimFrame():
     currentFrame = cmds.currentTime( query=True )
     return currentFrame >= endAnimFrame
@@ -82,6 +90,7 @@ def waitForModelToSettle():
         wait(speed)
            
 def main():
+    global E
     
     #set to frame 1
     cmds.currentTime(1, edit=True )
@@ -129,7 +138,9 @@ def main():
         if dead:
             r = -1000000
         else:
-            r = currentTimeInSec()
+            r = currentFrame() ** 4 
+            #exponentially increasing reward
+            
             
             
         print str(r)
@@ -154,6 +165,24 @@ def main():
             print
             resetSim(crawler)
             dead = False
+            
+            #update E
+            timePassed = timeElapsed()
+            if timePassed > 18000:
+                E = 0.33
+            elif timePassed > 14400:
+                E = 0.33
+            elif timePassed > 10800:
+                E = 0.33
+            elif timePassed > 7200:
+                E = 0.33
+            elif timePassed > 3600:
+                E = 0.5
+            elif timePassed > 0:
+                E = 1.0
+            
+            print "E = {}".format(E)
+            print
               
             qr.save()
         
