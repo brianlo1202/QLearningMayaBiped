@@ -26,6 +26,11 @@ class Walker:
         transSensorsList = cmds.ls( 'sensor_translate*')
         self.transSensors = [Sensor_Translate(sensor) for sensor in transSensorsList if not "Shape" in sensor and not "Constraint" in sensor]
         
+        #make list of death sensors
+        deathSensorsList = cmds.ls( 'sensor_death*')
+        self.deathSensors = [Sensor_Death(sensor) for sensor in deathSensorsList if not "Shape" in sensor and not "Constraint" in sensor]
+        
+        
     def roundDown10(self, value):
         if value >= 0:
             return int(value - value % 10)
@@ -68,6 +73,8 @@ print "rot sensors:"
 print [str(sensor) for sensor in crawler.rotSensors]
 print "trans sensors:"
 print [str(sensor) for sensor in crawler.transSensors]
+print "death sensors:"
+print [str(sensor) for sensor in crawler.deathSensors]
 
 print
 print "set motors to 0"
