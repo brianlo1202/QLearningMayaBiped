@@ -1,6 +1,6 @@
 //Maya ASCII 2018ff09 scene
 //Name: Model.ma
-//Last modified: Wed, Jan 01, 2020 11:21:39 AM
+//Last modified: Wed, Jan 01, 2020 11:22:57 AM
 //Codeset: UTF-8
 requires maya "2018ff09";
 requires "mtoa" "3.1.2.1";
