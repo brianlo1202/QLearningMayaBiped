@@ -23,6 +23,11 @@ class Sensor_Translate(Sensor):
     def readY(self):
         reading = cmds.getAttr(self.name + '.translateY')
         return reading
+#returns if sensor hit the ground
+class Sensor_Death(Sensor):
+    def read(self):
+        reading = cmds.getAttr(self.name + '.translateY')
+        return reading <= 0.0
 
 #Test Sensor
 print
@@ -48,3 +53,11 @@ s = Sensor_Translate(randomSensorName)
 print "sensor to string: " + str(s)
 print "sensor reading: " + str(s.read())
 print "sensor reading Y: " + str(s.readY())
+
+#Tests Sensor_Death
+print
+randomSensorName = cmds.ls( 'sensor_death_knee1' )[0]
+print("testing " + randomSensorName)
+s = Sensor_Death(randomSensorName)
+print "sensor to string: " + str(s)
+print "sensor reading: " + str(s.read())
