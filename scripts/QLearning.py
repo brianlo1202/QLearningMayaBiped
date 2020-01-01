@@ -2,15 +2,15 @@
 import random
 import time
 
-E = 1.0 #exploration rate
+E = 0.5 #exploration rate
 a = 0.5 #learning rate
 y = 1.0
 speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 10 #seconds
-maxIterations = inf
+programTimeLimit = 5*60 #seconds
+maxIterations = 10
 
 endAnimFrame = 384
 
@@ -34,7 +34,8 @@ def timerStart():
     
 def timeIsUp():
     return (time.time() - startTime) > programTimeLimit
-    
+def timeRemaining():
+    return programTimeLimit - (time.time() - startTime)
 def currentTimeInSec():
     return cmds.currentTime( query=True ) / 24.0 
 def atEndAnimFrame():
@@ -149,6 +150,7 @@ def main():
 
             currentIteration += 1
             print "iteration {} of {} complete".format(currentIteration, maxIterations)
+            print "{} seconds left".format(int(timeRemaining()))
             print
             resetSim(crawler)
             dead = False
