@@ -2,15 +2,15 @@
 import random
 import time
 
-E = 0.5 #exploration rate
-a = 0.5 #learning rate
+E = 0.33 #exploration rate
+a = 0.0 #learning rate
 y = 1.0
 speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 60*60 #seconds
-maxIterations = inf
+programTimeLimit = 12*60*60 #seconds
+maxIterations = 10
 
 endAnimFrame = 384
 
