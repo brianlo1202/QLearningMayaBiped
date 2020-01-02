@@ -2,7 +2,7 @@
 import random
 import time
 
-E = 1.0 #exploration rate
+E = 0.5 #exploration rate
 a = 0.5 #learning rate
 y = 1.0
 speed = 0.041 #time between frames (0.041 is real time 24 fps)
@@ -165,26 +165,13 @@ def main():
             print "iteration {} of {} complete".format(currentIteration, maxIterations)
             print "{} seconds left".format(int(timeRemaining()))
             print
-            resetSim(crawler)
             dead = False
-            
-            #update E
-            timePassed = timeElapsed()
-            if timePassed > 18000:
-                E = 0.33
-            elif timePassed > 14400:
-                E = 0.33
-            elif timePassed > 10800:
-                E = 0.33
-            elif timePassed > 7200:
-                E = 0.5
-            elif timePassed > 3600:
-                E = 0.5
-            elif timePassed > 0:
-                E = 1.0
             
             print "E = {}".format(E)
             print
+            
+            resetSim(crawler)
+
               
             
         
