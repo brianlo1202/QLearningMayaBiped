@@ -2,7 +2,7 @@
 import random
 import time
 
-E = 0.5 #exploration rate
+E = 1.0 #exploration rate
 a = 0.5 #learning rate
 y = 1.0
 speed = 0.041 #time between frames (0.041 is real time 24 fps)
