@@ -2,15 +2,15 @@
 import random
 import time
 
-E = 0.33 #exploration rate
-a = 0.0 #learning rate
+E = 1.0 #exploration rate
+a = 0.5 #learning rate
 y = 1.0
 speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 12*60*60 #seconds
-maxIterations = 10
+programTimeLimit = 1*30*60 #seconds
+maxIterations = inf
 
 endAnimFrame = 384
 
@@ -112,11 +112,13 @@ def main():
     timerStart()
     currentIteration = 0
     
+    
     while not timeIsUp() and currentIteration < maxIterations:
+                
         nextPossibleActions = currentState.getNextPossibleActions()
-        
+             
         action = None
-        
+             
         if timeToExplore(E):
             #print "explore"
             action = chooseUntakenAction(currentState, qr)
@@ -125,7 +127,10 @@ def main():
             action = chooseBestAction(currentState, qr)
             
         #print str(action)
-            
+        
+        #take action for 2 frames
+        crawler.takeAction(action)
+        wait(speed)
         crawler.takeAction(action)
         wait(speed)
         
@@ -136,14 +141,26 @@ def main():
         deathSensorReadings = [sensor.read() for sensor in crawler.deathSensors]
         dead = any(deathSensorReadings)
         
+        #reward for living
         r = 0
         if dead:
             r = -1000000
         else:
-            r = currentFrame() ** 4 
-            #exponentially increasing reward
-            
-            
+            r = currentFrame() ** 2 
+            #exponentially increasing living reward
+              
+        print str(r)
+      
+                
+        #reward for moving body up
+        prevHeight = s.bodyTrans
+        currentHeight = sPrime.bodyTrans
+        
+        if currentHeight >= prevHeight:
+            r *= 2
+            print "REWARD: MOVE UP"
+        else:
+            r /= 2
             
         print str(r)
  

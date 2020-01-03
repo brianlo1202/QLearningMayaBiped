@@ -13,8 +13,16 @@ class Sensor_Rotation(Sensor):
     #actual rotation is mult by -1 to make clockwise positive
     def read(self):
         reading = cmds.getAttr(self.name + '.rotateZ')
-    
         return -1*reading
+    def readX(self):
+        reading = cmds.getAttr(self.name + '.rotateX')
+        return reading
+    def readY(self):
+        reading = cmds.getAttr(self.name + '.rotateY')
+        return reading
+        
+    
+        
         
 class Sensor_Translate(Sensor):
     def read(self):
@@ -43,7 +51,9 @@ randomSensorName = cmds.ls( 'sensor_rotation*' )[0]
 print("testing " + randomSensorName)
 s = Sensor_Rotation(randomSensorName)
 print "sensor to string: " + str(s)
-print "sensor reading: " + str(s.read())  
+print "sensor reading: " + str(s.read())
+print "sensor reading X: " + str(s.readX())
+print "sensor reading Y: " + str(s.readY())  
   
 #Tests Sensor_Translate
 print

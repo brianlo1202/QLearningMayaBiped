@@ -31,25 +31,35 @@ class Walker:
         self.deathSensors = [Sensor_Death(sensor) for sensor in deathSensorsList if not "Shape" in sensor and not "Constraint" in sensor]
         
         
-    def roundDown10(self, value):
+    def roundDown(self, value):
         if value >= 0:
             return int(value - value % 10)
         else:
             return int(value + -1 * value % 10)
             
+    def roundDown20(self, value):
+        if value >= 0:
+            return int(value - value % 20)
+        else:
+            return int(value + -1 * value % 20)
+            
     def getCurrentState(self):
-        bodyTrans = self.transSensors[0].read()
-        bodyRot = self.roundDown10(self.rotSensors[0].read())
+        bodyTrans = self.transSensors[0].readY()
         
-        lThighRot = self.roundDown10(self.rotSensors[1].read())
-        rThighRot = self.roundDown10(self.rotSensors[2].read())
-        lKneeRot = self.roundDown10(self.rotSensors[3].read())
-        rKneeRot = self.roundDown10(self.rotSensors[4].read())
+        bodyRotX = self.roundDown(self.rotSensors[0].readX())
+        bodyRotY = self.roundDown20(self.rotSensors[0].readY())
+        bodyRotZ = self.roundDown(self.rotSensors[0].read())
+        bodyRot = (bodyRotX, bodyRotY, bodyRotZ)
         
-        lThighSpeed = self.roundDown10(self.motors[0].getSpeed())
-        rThighSpeed = self.roundDown10(self.motors[1].getSpeed())
-        lKneeSpeed = self.roundDown10(self.motors[2].getSpeed())
-        rKneeSpeed = self.roundDown10(self.motors[3].getSpeed())
+        lThighRot = self.roundDown(self.rotSensors[1].read())
+        rThighRot = self.roundDown(self.rotSensors[2].read())
+        lKneeRot = self.roundDown(self.rotSensors[3].read())
+        rKneeRot = self.roundDown(self.rotSensors[4].read())
+        
+        lThighSpeed = self.roundDown(self.motors[0].getSpeed())
+        rThighSpeed = self.roundDown(self.motors[1].getSpeed())
+        lKneeSpeed = self.roundDown(self.motors[2].getSpeed())
+        rKneeSpeed = self.roundDown(self.motors[3].getSpeed())
         
         return State(bodyTrans, bodyRot, lThighRot, rThighRot, lKneeRot, rKneeRot, lThighSpeed, rThighSpeed, lKneeSpeed, rKneeSpeed)
     
@@ -64,6 +74,7 @@ class Walker:
         self.motors[2].setSpeed(action.leftKneeSpeed)
         self.motors[3].setSpeed(action.rightKneeSpeed)
         self.nextFrame()
+        
      
 #tests
 crawler = Walker("crawler");
