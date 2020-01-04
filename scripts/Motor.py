@@ -14,7 +14,7 @@ class Motor:
         
 #test Motor
 print
-m1 = Motor("motor_rightKneeShape")
+m1 = Motor("motor4_rightKneeShape")
 print "testing" + str(m1)
 currentSpeed = m1.getSpeed()
 newSpeed = currentSpeed + 1

@@ -2,17 +2,19 @@
 import random
 import time
 
-E = 1.0 #exploration rate
+E = 0.1 #exploration rate
 a = 0.5 #learning rate
 y = 1.0
 speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 1*60*60 #seconds
+programTimeLimit = 3*60*60 #seconds
 maxIterations = inf
 
 endAnimFrame = 384
+
+initVal = 1000000
 
 
 def timeToExplore(E):
@@ -53,7 +55,7 @@ def atEndAnimFrame():
 def chooseUntakenAction(s, qr):
     nextPossibleActions = s.getNextPossibleActions()
 
-    untakenActions = [a for a in nextPossibleActions if qr.get((s,a)) == 0]
+    untakenActions = [a for a in nextPossibleActions if qr.get((s,a)) == initVal]
     
     if len(untakenActions) == 0: #choose from non max actions if none unexplored
         maxQ = max([qr.get((s,a)) for a in nextPossibleActions])
@@ -147,10 +149,7 @@ def main():
             r = -1000000
         else:
             r = currentFrame() ** 2 
-            #exponentially increasing living reward
-              
-        print str(r)
-      
+            #exponentially increasing living reward      
                 
         #reward for moving body up
         prevHeight = s.bodyTrans
@@ -186,6 +185,9 @@ def main():
             
             print "E = {}".format(E)
             print
+            
+            if timeElapsed() > 7200:
+                E = 0.5
             
             resetSim(crawler)
 

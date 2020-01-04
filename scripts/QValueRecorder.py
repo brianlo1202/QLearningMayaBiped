@@ -3,6 +3,8 @@ import os
 import os.path
 from os import path
 
+initVal = 1000000
+
 #set working directory
 
 class QValueRecorder:
@@ -19,7 +21,7 @@ class QValueRecorder:
         if key in self.recorder:
             return self.recorder[key]
         else:
-            return 0
+            return initVal
            
     def set(self, key, value):
         self.recorder[key] = value
