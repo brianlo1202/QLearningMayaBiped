@@ -2,14 +2,14 @@
 import random
 import time
 
-E = 0.1 #exploration rate
+E = 0.0 #exploration rate
 a = 0.5 #learning rate
 y = 1.0
 speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 3*60*60 #seconds
+programTimeLimit = 1*6wr0*60 #seconds
 maxIterations = inf
 
 endAnimFrame = 384
@@ -130,7 +130,7 @@ def main():
             
         #print str(action)
         
-        #take action for 2 frames
+        #take action for 1 frames
         crawler.takeAction(action)
         wait(speed)
         crawler.takeAction(action)
@@ -187,7 +187,7 @@ def main():
             print
             
             if timeElapsed() > 7200:
-                E = 0.5
+                E = 0.2
             
             resetSim(crawler)
 
