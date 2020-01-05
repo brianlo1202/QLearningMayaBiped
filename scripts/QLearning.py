@@ -1,6 +1,7 @@
 #Standing Version!!
 import random
 import time
+import math
 
 E = 0.0 #exploration rate
 a = 0.5 #learning rate
@@ -9,7 +10,7 @@ speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 1*6wr0*60 #seconds
+programTimeLimit = 1*1*60 #seconds
 maxIterations = inf
 
 endAnimFrame = 384
@@ -90,6 +91,24 @@ def waitForModelToSettle():
     while cmds.currentTime( query=True ) < 48:
         nextFrame()
         wait(speed)
+        
+def feetUnderBody(crawler):
+    bodySensor = crawler.transSensors[0]
+    foot1Sensor = crawler.transSensors[1]
+    foot2Sensor = crawler.transSensors[2]
+    
+    bodyXZPos = (bodySensor.readX(), bodySensor.readZ())
+    
+    feetAvgX = (foot1Sensor.readX() + foot2Sensor.readX()) / 2.0
+    feetAvgZ = (foot1Sensor.readZ() + foot2Sensor.readZ()) / 2.0
+    
+    feetAvgPos = (feetAvgX, feetAvgZ)
+    
+    bodyFeetDiff = (bodyXZPos[0] - feetAvgPos[0], bodyXZPos[1] - feetAvgPos[1])
+    
+    diffMag = math.sqrt( bodyFeetDiff[0] ** 2 + bodyFeetDiff[1] ** 2 )
+    
+    return diffMag < 0.4
            
 def main():
     global E
@@ -157,11 +176,12 @@ def main():
         
         if currentHeight >= prevHeight:
             r *= 2
-            print "REWARD: MOVE UP"
         else:
             r /= 2
+                    
+        if not feetUnderBody(crawler):
+            print "NOT STANDING"
             
-        print str(r)
  
  
         sample = r + y*qr.maxQAtState(sPrime)
