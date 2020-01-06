@@ -10,7 +10,7 @@ speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 1*1*60 #seconds
+programTimeLimit = 1*30*60 #seconds
 maxIterations = inf
 
 endAnimFrame = 384
@@ -167,23 +167,26 @@ def main():
         if dead:
             r = -1000000
         else:
-            r = currentFrame() ** 2 
-            #exponentially increasing living reward      
+            if feetUnderBody(crawler):
                 
-        #reward for moving body up
-        prevHeight = s.bodyTrans
-        currentHeight = sPrime.bodyTrans
-        
-        if currentHeight >= prevHeight:
-            r *= 2
-        else:
-            r /= 2
-                    
-        if not feetUnderBody(crawler):
-            print "NOT STANDING"
-            
+                #exponential reward for standing
+                r = currentFrame() ** 2 
  
- 
+                #reward for moving body up
+                #prevHeight = s.bodyTrans
+                #currentHeight = sPrime.bodyTrans
+                
+                #if currentHeight >= prevHeight:
+                #    r *= 2
+                #else:
+                #    r /= 2
+                
+            else:
+                r = 0
+                
+        print str(r)
+                        
+
         sample = r + y*qr.maxQAtState(sPrime)
         
         newQVal = (1-a) * qr.get((s,action)) + a * sample
