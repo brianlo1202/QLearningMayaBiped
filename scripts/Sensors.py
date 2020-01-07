@@ -10,19 +10,19 @@ class Sensor:
         return self.name + " (reading: " + str(self.read()) + ")"
 
 class Sensor_Rotation(Sensor):
-    #actual rotation is mult by -1 to make clockwise positive
+    #actual rotation mult by -1 to make clockwise positive
     def read(self):
         reading = cmds.getAttr(self.name + '.rotateZ')
         return -1*reading
     def readX(self):
         reading = cmds.getAttr(self.name + '.rotateX')
-        return reading
+        return -1*reading
     def readY(self):
         reading = cmds.getAttr(self.name + '.rotateY')
-        return reading
+        return -1*reading
     def readZ(self):
         reading = cmds.getAttr(self.name + '.rotateZ')
-        return reading
+        return -1*reading
         
     
         

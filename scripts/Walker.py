@@ -39,9 +39,9 @@ class Walker:
             
     def roundDownDec(self, value):
         if value >= 0:
-            return int(value - value % 0.2)
+            return value - value % 0.2
         else:
-            return int(value + -1 * value % 0.2)
+            return value + -1 * value % 0.2
             
     def roundDown20(self, value):
         if value >= 0:
@@ -57,20 +57,46 @@ class Walker:
         bodyRotZ = self.roundDown(self.rotSensors[0].read())
         bodyRot = (bodyRotX, bodyRotY, bodyRotZ)
         
+        #other rot
+        
         lThighRotX = self.roundDown(self.rotSensors[1].readX())
         lThighRotZ = self.roundDown(self.rotSensors[1].readZ())
         lThighRot = (lThighRotX, lThighRotZ)
         
-        rThighRot = self.roundDown(self.rotSensors[2].read())
+        rThighRotX = self.roundDown(self.rotSensors[2].readX())
+        rThighRotZ = self.roundDown(self.rotSensors[2].readZ())
+        rThighRot = (rThighRotX, rThighRotZ)
+        
         lKneeRot = self.roundDown(self.rotSensors[3].read())
         rKneeRot = self.roundDown(self.rotSensors[4].read())
         
-        lThighSpeed = self.roundDown(self.motors[0].getSpeed())
-        rThighSpeed = self.roundDown(self.motors[1].getSpeed())
+        lAnkleRot = self.roundDown(self.rotSensors[5].read())
+        rAnkleRot = self.roundDown(self.rotSensors[6].read())
+        
+        torsoRotX = self.roundDown(self.rotSensors[7].readX())
+        torsoRotZ = self.roundDown(self.rotSensors[7].readZ())
+        torsoRot = (torsoRotX, torsoRotZ)
+        
+        #speeds
+        lThighSpeedX = self.roundDown(self.motors[0].getSpeedX())
+        lThighSpeedZ = self.roundDown(self.motors[0].getSpeedZ())
+        lThighSpeed = (lThighSpeedX, lThighSpeedZ)
+        
+        rThighSpeedX = self.roundDown(self.motors[1].getSpeedX())
+        rThighSpeedZ = self.roundDown(self.motors[1].getSpeedZ())
+        rThighSpeed = (rThighSpeedX, rThighSpeedZ)
+        
         lKneeSpeed = self.roundDown(self.motors[2].getSpeed())
         rKneeSpeed = self.roundDown(self.motors[3].getSpeed())
         
-        return State(bodyTrans, bodyRot, lThighRot, rThighRot, lKneeRot, rKneeRot, lThighSpeed, rThighSpeed, lKneeSpeed, rKneeSpeed)
+        lAnkleSpeed = self.roundDown(self.motors[4].getSpeed())
+        rAnkleSpeed = self.roundDown(self.motors[5].getSpeed())
+        
+        torsoSpeedX = self.roundDown(self.motors[6].getSpeedX())
+        torsoSpeedZ = self.roundDown(self.motors[6].getSpeedZ())
+        torsoSpeed = (torsoSpeedX, torsoSpeedZ)
+        
+        return State(bodyTrans, bodyRot, lThighRot, rThighRot, lKneeRot, rKneeRot, lAnkleRot, rAnkleRot, torsoRot, lThighSpeed, rThighSpeed, lKneeSpeed, rKneeSpeed, lAnkleSpeed, rAnkleSpeed, torsoSpeed)
     
     def nextFrame(self):
         currentFrame = cmds.currentTime( query=True )
@@ -78,10 +104,15 @@ class Walker:
         cmds.currentTime( nextFrame, edit=True )
         
     def takeAction(self, action):
-        self.motors[0].setSpeed(action.leftThighSpeed)
-        self.motors[1].setSpeed(action.rightThighSpeed)
+        self.motors[0].setSpeed2D(action.leftThighSpeed)
+        self.motors[1].setSpeed2D(action.rightThighSpeed)
         self.motors[2].setSpeed(action.leftKneeSpeed)
         self.motors[3].setSpeed(action.rightKneeSpeed)
+        
+        self.motors[4].setSpeed(action.rightAnkleSpeed)
+        self.motors[5].setSpeed(action.leftAnkleSpeed)
+        self.motors[6].setSpeed2D(action.torsoSpeed)
+        
         self.nextFrame()
         
      
@@ -98,15 +129,14 @@ print [str(sensor) for sensor in crawler.deathSensors]
 
 print
 print "set motors to 0"
-a = Action(0, 0, 0, 0, 0, 0, 0)
+a = Action((0,0), (0,0), 0, 0, 0, 0, (0,0))
+print "action to take: {}".format(str(a))
 crawler.takeAction(a)
 print "current state:"
 print crawler.getCurrentState()
 
 print "set motors to max and min"
-a = Action(320, -320, 320, -320, 320, -320, 320)
+a = Action((10,20), (30,40), 50, 60, 70, 80, (90,100))
 crawler.takeAction(a)
 print "current state:"
 print crawler.getCurrentState()
-
-
