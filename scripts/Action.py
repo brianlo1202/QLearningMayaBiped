@@ -1,26 +1,31 @@
 class Action:
-    def __init__(self, leftThighSpeed, rightThighSpeed, leftKneeSpeed, rightKneeSpeed):
+    #7 values
+    def __init__(self, leftThighSpeed, rightThighSpeed, leftKneeSpeed, rightKneeSpeed, leftAnkleSpeed, rightAnkleSpeed, torsoSpeed):
         self.leftThighSpeed = leftThighSpeed
         self.rightThighSpeed = rightThighSpeed
         self.leftKneeSpeed = leftKneeSpeed
         self.rightKneeSpeed = rightKneeSpeed
         
+        self.leftAnkleSpeed = leftAnkleSpeed
+        self.rightAnkleSpeed = rightAnkleSpeed
+        self.torsoSpeed = torsoSpeed
+        
     def __hash__(self):
-        return hash((self.leftThighSpeed, self.rightThighSpeed, self.leftKneeSpeed, self.rightKneeSpeed))
+        return hash((self.leftThighSpeed, self.rightThighSpeed, self.leftKneeSpeed, self.rightKneeSpeed, self.leftAnkleSpeed, self.rightAnkleSpeed, self.torsoSpeed))
         
     def __eq__(self, other):
-        me = (self.leftThighSpeed, self.rightThighSpeed, self.leftKneeSpeed, self.rightKneeSpeed)
-        him = (other.leftThighSpeed, other.rightThighSpeed, other.leftKneeSpeed, other.rightKneeSpeed)
+        me = (self.leftThighSpeed, self.rightThighSpeed, self.leftKneeSpeed, self.rightKneeSpeed, self.leftAnkleSpeed, self.rightAnkleSpeed, self.torsoSpeed)
+        him = (other.leftThighSpeed, other.rightThighSpeed, other.leftKneeSpeed, other.rightKneeSpeed, other.leftAnkleSpeed, other.rightAnkleSpeed, other.torsoSpeed)
         
         return me == him
         
     def __str__(self):
-        return "action: ({}, {}, {}, {})".format(self.leftThighSpeed, self.rightThighSpeed, self.leftKneeSpeed, self.rightKneeSpeed)
+        return "action: ({}, {}, {}, {}, {}, {}, {})".format(self.leftThighSpeed, self.rightThighSpeed, self.leftKneeSpeed, self.rightKneeSpeed, self.leftAnkleSpeed, self.rightAnkleSpeed, self.torsoSpeed)
         
 #tests
-a1 = Action(80, 79, 78, 77)
-a2 = Action(80, 79, 78, 77)
-a3 = Action(80, 79, 78, 76)
+a1 = Action(80, 79, 78, 77, 77,77,77)
+a2 = Action(80, 79, 78, 77, 77,77,77)
+a3 = Action(80, 79, 78, 76, 76,76,76)
 
 print str(a1)
 

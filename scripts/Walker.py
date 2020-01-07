@@ -37,6 +37,12 @@ class Walker:
         else:
             return int(value + -1 * value % 10)
             
+    def roundDownDec(self, value):
+        if value >= 0:
+            return int(value - value % 0.2)
+        else:
+            return int(value + -1 * value % 0.2)
+            
     def roundDown20(self, value):
         if value >= 0:
             return int(value - value % 20)
@@ -44,14 +50,17 @@ class Walker:
             return int(value + -1 * value % 20)
             
     def getCurrentState(self):
-        bodyTrans = self.transSensors[0].readY()
+        bodyTrans = self.roundDownDec(self.transSensors[0].readY())
         
         bodyRotX = self.roundDown(self.rotSensors[0].readX())
-        bodyRotY = self.roundDown20(self.rotSensors[0].readY())
+        bodyRotY = self.roundDown(self.rotSensors[0].readY())
         bodyRotZ = self.roundDown(self.rotSensors[0].read())
         bodyRot = (bodyRotX, bodyRotY, bodyRotZ)
         
-        lThighRot = self.roundDown(self.rotSensors[1].read())
+        lThighRotX = self.roundDown(self.rotSensors[1].readX())
+        lThighRotZ = self.roundDown(self.rotSensors[1].readZ())
+        lThighRot = (lThighRotX, lThighRotZ)
+        
         rThighRot = self.roundDown(self.rotSensors[2].read())
         lKneeRot = self.roundDown(self.rotSensors[3].read())
         rKneeRot = self.roundDown(self.rotSensors[4].read())
@@ -89,13 +98,13 @@ print [str(sensor) for sensor in crawler.deathSensors]
 
 print
 print "set motors to 0"
-a = Action(0, 0, 0, 0)
+a = Action(0, 0, 0, 0, 0, 0, 0)
 crawler.takeAction(a)
 print "current state:"
 print crawler.getCurrentState()
 
 print "set motors to max and min"
-a = Action(320, -320, 320, -320)
+a = Action(320, -320, 320, -320, 320, -320, 320)
 crawler.takeAction(a)
 print "current state:"
 print crawler.getCurrentState()

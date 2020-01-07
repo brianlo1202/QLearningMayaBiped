@@ -20,6 +20,9 @@ class Sensor_Rotation(Sensor):
     def readY(self):
         reading = cmds.getAttr(self.name + '.rotateY')
         return reading
+    def readZ(self):
+        reading = cmds.getAttr(self.name + '.rotateZ')
+        return reading
         
     
         
@@ -42,6 +45,12 @@ class Sensor_Translate(Sensor):
         return reading
 #returns if sensor hit the ground
 class Sensor_Death(Sensor):
+    def read(self):
+        reading = cmds.getAttr(self.name + '.translateY')
+        return reading <= 0.0
+        
+#returns if sensor hit the ground
+class Sensor_OnGround(Sensor):
     def read(self):
         reading = cmds.getAttr(self.name + '.translateY')
         return reading <= 0.0
