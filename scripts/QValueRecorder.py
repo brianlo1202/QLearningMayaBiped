@@ -49,18 +49,18 @@ class QValueRecorder:
         
 #DON'T RUN OR WILL OVERRIDE SAVED DATA
 def test():
-    key1 = (State(1,2,3,4,5,6,7,8,9,0), Action(320,320,320,320))
-    key2 = (State(5,4,3,2,1,0,1,2,3,4), Action(0,80,80,0))
+    key1 = (State(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16), Action(320,320,320,320,320,320,320))
+    key2 = (State(0,5,3,4,5,6,7,8,9,19,12,12,13,14,15,16), Action(120,320,320,320,320,320,320))
     
     qRecorder = QValueRecorder("/Users/brianlo/Documents/maya/projects/QLearningBipedWalker/scripts")
-    if qRecorder.get(key1) != 0:
-        print "ERROR: DEFAULT VALUES SHOULD BE 0"
+    if qRecorder.get(key1) != 1000000:
+        print "ERROR: DEFAULT VALUES SHOULD BE 1000000"
     else:
         print "DEFAULT VALUE TEST PASSED :)"
     qRecorder.set(key1, 1)
     if qRecorder.get(key1) != 1:
         print "ERROR: GETTING KEY 1"
-    elif qRecorder.get((State(1,2,3,4,5,6,7,8,9,0), Action(80,0,80,0))) != 1:
+    elif qRecorder.get((State(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16), Action(320,320,320,320,320,320,320))) != 1:
         print "ERROR: GETTING KEY 2"
     else:
         print "get tests passed :)"
@@ -80,13 +80,13 @@ def test():
     print [str(value) for value in qRecorder2.recorder.values()]
     
     print
-    print "default 0 test on loaded dict: (should be 0)"
-    print qRecorder2.get((State(1,3,3,3,3,3,3,3,3,3), Action(80, 80,0,0)))   
+    print "default test on loaded dict: (should be 1mil)"
+    print qRecorder2.get((State(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16), Action(80,320,320,320,320,320,320)))   
     
     print "{} should be true".format(qRecorder2.savedRecordExists())   
     
     print
-    key3 = (State(22,2,3,4,5,6,7,8,9,0), Action(320,320,320,320)) 
+    key3 = (State(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16), Action(320,320,320,320,320,320,320))
     v3 = qRecorder2.get(key3)
     if not v3 == 1:
         print "EQUVALENT STATES TEST FAILED"
@@ -94,9 +94,10 @@ def test():
         print "EQUIVALENCE STATES TEST PASSED"
         
     print "testing max Q"
-    print qRecorder.maxQAtState(State(1,2,3,4,5,6,7,8,9,0))
+    print qRecorder.maxQAtState(State(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16))
 
 print
+test()
 qr = QValueRecorder("/Users/brianlo/Documents/maya/projects/QLearningBipedWalker/scripts")
 qr.load()
 print [str(key[0]) + " " + str(key[1]) for key in qr.recorder.keys()]
