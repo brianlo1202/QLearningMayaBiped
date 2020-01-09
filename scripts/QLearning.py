@@ -3,6 +3,8 @@ import random
 import time
 import math
 
+#goal: 100000
+
 E = 1.0 #exploration rate
 a = 0.5 #learning rate
 y = 1.0
