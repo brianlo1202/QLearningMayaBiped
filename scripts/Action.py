@@ -1,5 +1,5 @@
 class Action:
-    #7 values
+    #7 values: thigh torso speeds are tuples with 2 values for x z rotation
     def __init__(self, leftThighSpeed, rightThighSpeed, leftKneeSpeed, rightKneeSpeed, leftAnkleSpeed, rightAnkleSpeed, torsoSpeed):
         self.leftThighSpeed = leftThighSpeed
         self.rightThighSpeed = rightThighSpeed

@@ -3,19 +3,21 @@ import random
 import time
 import math
 
-E = 0.0 #exploration rate
+E = 1.0 #exploration rate
 a = 0.5 #learning rate
 y = 1.0
 speed = 0.041 #time between frames (0.041 is real time 24 fps)
 
 #sim will stop if programTimeLimit OR maxIterations are met
 inf = float('inf') #in case u need it
-programTimeLimit = 1*30*60 #seconds
+programTimeLimit = 12*60*60 #seconds
 maxIterations = inf
 
 endAnimFrame = 384
 
 initVal = 1000000
+
+everythingOff = Action((0,0),(0,0),0,0,0,0,(0,0))
 
 
 def timeToExplore(E):
@@ -54,6 +56,10 @@ def atEndAnimFrame():
     return currentFrame >= endAnimFrame
 
 def chooseUntakenAction(s, qr):
+    
+    #for testing purposes only
+    #return everythingOff
+    
     nextPossibleActions = s.getNextPossibleActions()
 
     untakenActions = [a for a in nextPossibleActions if qr.get((s,a)) == initVal]
@@ -78,7 +84,6 @@ def chooseBestAction(s, qr):
     
 def resetSim(crawler):
      #set all motors to 0 speed
-    everythingOff = Action(0,0,0,0)
     crawler.takeAction(everythingOff)
     
     #set frame to 1
@@ -108,7 +113,7 @@ def feetUnderBody(crawler):
     
     diffMag = math.sqrt( bodyFeetDiff[0] ** 2 + bodyFeetDiff[1] ** 2 )
     
-    return diffMag < 0.4
+    return diffMag < 0.5
            
 def main():
     global E
@@ -133,6 +138,8 @@ def main():
     timerStart()
     currentIteration = 0
     
+    #prev body X
+    prevForwardDist = crawler.transSensors[0].read()
     
     while not timeIsUp() and currentIteration < maxIterations:
                 
@@ -162,25 +169,18 @@ def main():
         deathSensorReadings = [sensor.read() for sensor in crawler.deathSensors]
         dead = any(deathSensorReadings)
         
-        #reward for living
+        #rewards
         r = 0
         if dead:
             r = -1000000
         else:
-            if feetUnderBody(crawler):
+            movedForward = crawler.transSensors[0].read() > prevForwardDist
+            prevForwardDist = crawler.transSensors[0].read()
+            
+            if feetUnderBody(crawler) and movedForward: #reward being on balance and going forward
                 
-                #exponential reward for standing
-                r = currentFrame() ** 2 
- 
-                #reward for moving body up
-                #prevHeight = s.bodyTrans
-                #currentHeight = sPrime.bodyTrans
-                
-                #if currentHeight >= prevHeight:
-                #    r *= 2
-                #else:
-                #    r /= 2
-                
+                r = 100000
+      
             else:
                 r = 0
                 
@@ -220,7 +220,6 @@ def main():
     #save all data
     qr.save()
     #set all motors to 0 speed
-    everythingOff = Action(0,0,0,0)
     crawler.takeAction(everythingOff)
     
     print "QLearning Terminated"
