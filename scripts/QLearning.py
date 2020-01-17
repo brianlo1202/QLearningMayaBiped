@@ -5,7 +5,7 @@ import math
 
 #goal: 100000
 
-E = 1.0 #exploration rate
+E = 0.5 #exploration rate
 a = 0.5 #learning rate
 y = 1.0
 speed = 0.041 #time between frames (0.041 is real time 24 fps)
